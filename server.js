@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
 
+app.get('/', (request, response) => {
+    response.send("the server is completely running!")
+})
+
 app.get('/home', (request, response) => {
     response.send("hi, this is the home page!")
 })
