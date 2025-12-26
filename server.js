@@ -5,6 +5,10 @@ app.get('/', (request, response) => {
     response.send("the server is completely running!")
 })
 
+app.get('/message', (request, response) => {
+    response.json({message: "Hello from express backend!"})
+})
+
 app.get('/products', (request, response) => {
     response.json([
         {id: 1, name: 'Laptop', price: 1299},
