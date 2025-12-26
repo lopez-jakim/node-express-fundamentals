@@ -2,6 +2,10 @@ const cors = require('cors')
 const express = require('express')
 const app = express()
 
+app.use(cors({
+    origin: ['http://localhost:5500', 'http://127.0.0.1:5500']
+}))
+
 app.get('/', (request, response) => {
     response.send("the server is completely running!")
 })
