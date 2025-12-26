@@ -25,7 +25,7 @@ for expressjs setup & initialization:
     - /products/5
     - /user/abc123
     - /coordinator/ferrer
-- in express, you write this with a colon (:) for example:
+- in express, you write this with a colon (:), for example:
     - /products/:id
         - whatever replaces :id in the URL becomes available as `request.params.id` in your route handler.
 
