@@ -17,6 +17,13 @@ app.get('/about-us', (request, response) => {
     response.send("this is the about us page!")
 })
 
+app.get('/products', (request, response) => {
+    response.json([
+        {id: 1, name: 'Laptop', price: 1299},
+        {id: 2, name: 'Chair', price: 1500}
+    ])
+})
+
 app.listen(4000, () => {
     console.log("the server is running!")
 })
