@@ -5,10 +5,6 @@ app.get('/', (request, response) => {
     response.send("the server is completely running!")
 })
 
-app.get('/home', (request, response) => {
-    response.send("hi, this is the home page!")
-})
-
 app.get('/products', (request, response) => {
     response.json([
         {id: 1, name: 'Laptop', price: 1299},
