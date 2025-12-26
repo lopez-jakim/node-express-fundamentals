@@ -13,10 +13,6 @@ app.get('/announcement', (request, response) => {
     response.send("this is the announcement page!")
 })
 
-app.get('/about-us', (request, response) => {
-    response.send("this is the about us page!")
-})
-
 app.get('/products', (request, response) => {
     response.json([
         {id: 1, name: 'Laptop', price: 1299},
