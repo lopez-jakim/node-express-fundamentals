@@ -97,7 +97,36 @@ router.post('/', authenticateToken, requireRole('coordinator', 'admin'), (req, r
  * Submit a task with PDF artifact
  * Requires: Authentication + faculty role
  */
-router.post('/:taskId/submit', authenticateToken, requireRole('faculty'), upload.single('file'), (req, res) => {
+router.post('/:taskId/submit', authenticateToken, requireRole('faculty'), (req, res) => {
+  upload.single('file')(req, res, (err) => {
+    // Handle multer errors
+    if (err) {
+      if (err.message === 'Only PDF files are allowed') {
+        return res.status(400).json({
+          success: false,
+          message: 'Only PDF files are allowed'
+        });
+      }
+      
+      if (err.code === 'LIMIT_FILE_SIZE') {
+        return res.status(400).json({
+          success: false,
+          message: 'File size exceeds 10MB limit'
+        });
+      }
+      
+      return res.status(500).json({
+        success: false,
+        message: 'File upload error',
+        error: err.message
+      });
+    }
+    
+    handleSubmit(req, res);
+  });
+});
+
+function handleSubmit(req, res) {
   try {
     const taskId = parseInt(req.params.taskId);
     
@@ -144,27 +173,12 @@ router.post('/:taskId/submit', authenticateToken, requireRole('faculty'), upload
   } catch (error) {
     console.error('Submit task error:', error);
     
-    // Handle multer errors
-    if (error.message === 'Only PDF files are allowed') {
-      return res.status(400).json({
-        success: false,
-        message: 'Only PDF files are allowed'
-      });
-    }
-    
-    if (error.code === 'LIMIT_FILE_SIZE') {
-      return res.status(400).json({
-        success: false,
-        message: 'File size exceeds 10MB limit'
-      });
-    }
-    
     res.status(500).json({
       success: false,
       message: 'Internal server error'
     });
   }
-});
+}
 
 /**
  * PATCH /api/benchmark-tasks/:taskId/review
