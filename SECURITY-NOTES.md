@@ -43,8 +43,31 @@ While basic validation is implemented, more comprehensive validation should be a
 **For Production**:
 - Use validation libraries like Joi or express-validator
 - Sanitize all user inputs
-- Implement rate limiting
+- Implement rate limiting (e.g., express-rate-limit)
 - Add CORS configuration
+- Implement request logging
+
+### 6. Rate Limiting
+This implementation does not include rate limiting on endpoints.
+
+**For Production**:
+- Install and configure express-rate-limit
+- Set appropriate limits for login attempts (e.g., 5 per 15 minutes)
+- Set limits for API endpoints to prevent abuse
+- Consider different limits for authenticated vs. unauthenticated requests
+
+Example:
+```javascript
+const rateLimit = require('express-rate-limit');
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // 5 requests per window
+  message: 'Too many login attempts, please try again later'
+});
+
+app.post('/api/auth/login', loginLimiter, loginHandler);
+```
 
 ## Security Improvements Made
 
@@ -54,3 +77,13 @@ While basic validation is implemented, more comprehensive validation should be a
 ✅ File type and size validation
 ✅ JWT token expiration
 ✅ Environment variable support for JWT secret
+✅ Cryptographically secure file naming (crypto.randomBytes)
+✅ Input validation with NaN checks
+✅ parseInt with explicit radix
+
+## Known Limitations (CodeQL Findings)
+
+⚠️ **Missing Rate Limiting**: All endpoints lack rate limiting, which could allow abuse.
+- This is acceptable for a learning project
+- For production, implement rate limiting using express-rate-limit
+- See Rate Limiting section above for implementation details
