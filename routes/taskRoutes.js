@@ -145,7 +145,15 @@ router.post('/:taskId/submit', authenticateToken, requireRole('faculty'), (req, 
 
 function handleSubmit(req, res) {
   try {
-    const taskId = parseInt(req.params.taskId);
+    const taskId = parseInt(req.params.taskId, 10);
+    
+    // Validate taskId is a valid number
+    if (isNaN(taskId)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid task ID'
+      });
+    }
     
     // Validate task exists
     const task = getTaskById(taskId);
@@ -212,8 +220,16 @@ function handleSubmit(req, res) {
  */
 router.patch('/:taskId/review', authenticateToken, requireRole('coordinator', 'admin'), (req, res) => {
   try {
-    const taskId = parseInt(req.params.taskId);
+    const taskId = parseInt(req.params.taskId, 10);
     const { status, comment } = req.body;
+    
+    // Validate taskId is a valid number
+    if (isNaN(taskId)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid task ID'
+      });
+    }
     
     // Validate task exists
     const task = getTaskById(taskId);

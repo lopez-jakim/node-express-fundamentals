@@ -60,8 +60,10 @@ function getAllTasks(filters = {}) {
   }
   
   if (filters.cycle_id) {
-    const cycleId = parseInt(filters.cycle_id);
-    filteredTasks = filteredTasks.filter(t => t.cycleId === cycleId);
+    const cycleId = parseInt(filters.cycle_id, 10);
+    if (!isNaN(cycleId)) {
+      filteredTasks = filteredTasks.filter(t => t.cycleId === cycleId);
+    }
   }
   
   return filteredTasks;
