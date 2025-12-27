@@ -178,6 +178,17 @@ app.listen(PORT, () => {
 ║  API Documentation: See comments in accreditrak-server.js  ║
 ╚════════════════════════════════════════════════════════════╝
   `);
+  
+  // Security warning if using default JWT secret
+  if (!process.env.JWT_SECRET) {
+    console.warn(`
+⚠️  WARNING: Using default JWT secret key!
+    This is acceptable for learning/development, but NEVER in production.
+    Set JWT_SECRET environment variable for production:
+    
+    export JWT_SECRET="your-secure-random-secret-here"
+    `);
+  }
 });
 
 module.exports = app;

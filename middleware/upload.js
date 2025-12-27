@@ -6,6 +6,7 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 // Ensure upload directory exists
 const uploadDir = path.join(__dirname, '..', 'uploads', 'artifacts');
@@ -20,7 +21,8 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const timestamp = Date.now();
-    const randomString = Math.random().toString(36).substring(2, 8);
+    // Use cryptographically secure random values for file naming
+    const randomString = crypto.randomBytes(8).toString('hex');
     const extension = path.extname(file.originalname);
     cb(null, `artifact-${timestamp}-${randomString}${extension}`);
   }

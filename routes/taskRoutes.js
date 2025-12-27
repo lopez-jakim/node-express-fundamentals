@@ -8,6 +8,7 @@ const router = express.Router();
 const { authenticateToken, requireRole } = require('../middleware/auth');
 const upload = require('../middleware/upload');
 const { cycleExists } = require('../data/cycles');
+const { findUserById } = require('../data/mockUsers');
 const {
   getAllTasks,
   getTaskById,
@@ -70,7 +71,6 @@ router.post('/', authenticateToken, requireRole('coordinator', 'admin'), (req, r
     }
     
     // Validate assigned user exists
-    const { findUserById } = require('../data/mockUsers');
     const assignedUser = findUserById(assignedUserId);
     if (!assignedUser) {
       return res.status(400).json({
