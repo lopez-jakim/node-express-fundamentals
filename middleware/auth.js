@@ -6,7 +6,9 @@
 const jwt = require('jsonwebtoken');
 const { findUserById } = require('../data/mockUsers');
 
-const JWT_SECRET = 'accreditrak-secret-key-2025';
+// Use environment variable for JWT secret, fallback to default for learning purposes
+// In production, ALWAYS use environment variables
+const JWT_SECRET = process.env.JWT_SECRET || 'accreditrak-secret-key-2025';
 const JWT_EXPIRATION = '24h';
 
 /**

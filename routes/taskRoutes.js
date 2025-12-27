@@ -21,6 +21,8 @@ const {
  * GET /api/benchmark-tasks
  * Get all tasks with optional filters
  * Requires: Authentication
+ * Faculty users can only see their own tasks
+ * Coordinators and admins can see all tasks
  */
 router.get('/', authenticateToken, (req, res) => {
   try {
@@ -28,6 +30,11 @@ router.get('/', authenticateToken, (req, res) => {
       assigned_user_id: req.query.assigned_user_id,
       cycle_id: req.query.cycle_id
     };
+    
+    // Faculty users can only see their own tasks
+    if (req.user.role === 'faculty') {
+      filters.assigned_user_id = req.user.userId;
+    }
     
     const tasks = getAllTasks(filters);
     
@@ -59,6 +66,16 @@ router.post('/', authenticateToken, requireRole('coordinator', 'admin'), (req, r
       return res.status(400).json({
         success: false,
         message: 'All fields are required: accreditationBenchmarkId, assignedUserId, cycleId, dueDate'
+      });
+    }
+    
+    // Validate assigned user exists
+    const { findUserById } = require('../data/mockUsers');
+    const assignedUser = findUserById(assignedUserId);
+    if (!assignedUser) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid assignedUserId: user does not exist'
       });
     }
     
@@ -136,6 +153,14 @@ function handleSubmit(req, res) {
       return res.status(404).json({
         success: false,
         message: 'Task not found'
+      });
+    }
+    
+    // Verify faculty user is authorized to submit this specific task
+    if (req.user.role === 'faculty' && task.assignedUserId !== req.user.userId) {
+      return res.status(403).json({
+        success: false,
+        message: 'You are not authorized to submit this task'
       });
     }
     
