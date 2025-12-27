@@ -12,13 +12,13 @@ npm install
 ### Run the Server
 ```bash
 # Using npm script
-npm run accreditrak
+npm run accreditrack
 
 # Or with auto-reload during development
 npm run dev
 
 # Or directly with node
-node accreditrak-server.js
+node accreditrack-server.js
 ```
 
 The server will start on `http://localhost:3000`
@@ -192,7 +192,7 @@ curl -s -X PATCH http://localhost:3000/api/benchmark-tasks/3/review \
 
 ```
 node-express-fundamentals/
-├── accreditrak-server.js        # Main server file
+├── accreditrack-server.js        # Main server file
 ├── data/                         # In-memory data storage
 │   ├── mockUsers.js             # Mock user authentication
 │   ├── cycles.js                # Accreditation cycles
@@ -213,14 +213,14 @@ Set the JWT secret for production:
 
 ```bash
 export JWT_SECRET="your-very-secure-random-secret-key-here"
-npm run accreditrak
+npm run accreditrack
 ```
 
 **Important:** Never use the default secret in production!
 
 ## 📝 Additional Documentation
 
-- **API Details:** See comments in `accreditrak-server.js`
+- **API Details:** See comments in `accreditrack-server.js`
 - **Security Notes:** See `SECURITY-NOTES.md`
 - **Production Considerations:** See `SECURITY-NOTES.md`
 
