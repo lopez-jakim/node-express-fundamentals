@@ -172,10 +172,10 @@ app.listen(PORT, () => {
 ╔════════════════════════════════════════════════════════════╗
 ║         AccrediTrack API Server - Running                  ║
 ╠════════════════════════════════════════════════════════════╣
-║  Server:  http://localhost:${PORT}                            ║
-║  Status:  ✓ Ready to accept requests                       ║
+║  Server:  http://localhost:${PORT}                         ║
+║  Status:  Ready to accept requests                         ║    
 ╠════════════════════════════════════════════════════════════╣
-║  API Documentation: See comments in accreditrak-server.js  ║
+║  API Documentation: See comments in accreditrack-server.js ║
 ╚════════════════════════════════════════════════════════════╝
   `);
   
