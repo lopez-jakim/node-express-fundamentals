@@ -15,7 +15,7 @@ router.put("/:id", (request, reponse) => {
 });
 
 router.delete("/:id", (request, response) => {
-    response.status(200).json({message: "You just delete a produce!"});
+    response.status(200).json({message: "You just delete a product!"});
 });
 
 export default router;
