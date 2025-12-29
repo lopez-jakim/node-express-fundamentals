@@ -1,5 +1,7 @@
-const cors = require('cors')
-const express = require('express')
+import cors from "cors";
+// const cors = require('cors')
+import express from "express";
+// const express = require('express')
 
 const app = express()
 
