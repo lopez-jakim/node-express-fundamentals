@@ -6,6 +6,8 @@ import dotenv from "dotenv"
 
 dotenv.config();
 
+// console.log(process.env) for debug: to confirm the variables are loaded
+
 const app = express();
 
 connectDB();
