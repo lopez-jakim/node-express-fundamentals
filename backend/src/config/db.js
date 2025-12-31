@@ -8,6 +8,7 @@ const connectDB = async() => {
             password: "1028",
             database: "accreditrack_db",
         });
+        console.log("Connected to MySQL DataBase Successfully")
     } catch (error) {
         console.error("Error connecting to MySQL:", error.message);
     }
