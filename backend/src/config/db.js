@@ -12,3 +12,5 @@ const connectDB = async() => {
         console.error("Error connecting to MySQL:", error.message);
     }
 };
+
+export default connectDB;
