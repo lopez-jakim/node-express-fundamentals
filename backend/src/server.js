@@ -2,6 +2,9 @@ import cors from "cors"; // same as const cors = require('cors')
 import express from "express"; // same as const express = require('express')
 import productsRoutes from "./routes/productsRoutes.js"
 import connectDB from "./config/db.js"
+import dotenv from "dotenv"
+
+dotenv.config();
 
 const app = express();
 
