@@ -3,10 +3,10 @@ import mysql2 from "mysql2"
 const connectDB = async() => {
     try {
         const connection = await mysql2.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "1028",
-            database: "accreditrack_db",
+            host: process.env.MYSQL_HOST,
+            user: process.env.MYSQL_USER,
+            password: process.env.MYSQL_PASSWORD,
+            database: process.env.MYSQL_DB_NAME,
         });
         console.log("Connected to MySQL DataBase Successfully")
     } catch (error) {
