@@ -4,20 +4,19 @@ import {sequelize} from "../config/db.js";
 // 1- create a schema
 // 2- model based off of that schema
 
-const productSchema = new mysql2.Schema(
+const Product = sequelize.define(
+    "Product",
     {
         title: {
-            type: String,
-            required: true
+            type: DataTypes.STRING,
+            allowNull: false // Required field
         },
         content: {
-            type: String,
-            required: true,
+            type: DataTypes.STRING,
+            allowNull: false // Required field
         },
     },
     {timestamps: true} //createdAt, updatedAt
 );
-
-const Product = mysql2.model("Product", productSchema)
 
 export default Product
