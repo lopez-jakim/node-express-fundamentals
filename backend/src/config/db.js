@@ -1,4 +1,3 @@
-import mysql2 from "mysql2"
 
 const connectDB = async() => {
     try {
