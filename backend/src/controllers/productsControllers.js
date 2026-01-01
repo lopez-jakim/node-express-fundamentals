@@ -8,7 +8,22 @@ export async function getAllProduct(request, response) {
         console.error("Error in getAllProducts controller", error);
         response.status(500).json({message: "Internal server error!"});
     }
-}   
+}
+
+export async function getProductById(request, response) {
+    try {
+        const getProductById = await product.findByPk(request.params.id);
+
+        if(!getProductById) {
+            return response.status(404).json({message: "Product not found!"});
+        }
+
+        response.json(getProductById);
+    } catch(error) {
+        console.error("Error in getProductById controller", error);
+        response.status(500).json({message: "Internal server error!"});
+    }
+}
 
 export async function createProduct (request, response) {
     try {
