@@ -1,3 +1,4 @@
+import {Sequelize} from "sequelize";
 
 const connectDB = async() => {
     try {
