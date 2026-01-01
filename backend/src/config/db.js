@@ -4,8 +4,8 @@ import dotenv from "dotenv"
 dotenv.config();
 
 // for debug: to confirm the variables are loaded
-// console.log(process.env)
-// console.log(process.env.DB_DIALECT);b
+// console.log(process.env);
+// console.log(process.env.DB_DIALECT);
 
 const sequelize = new Sequelize(
     process.env.MYSQL_DB_NAME,
