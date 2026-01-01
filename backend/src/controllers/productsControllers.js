@@ -33,11 +33,15 @@ export async function updateProduct (request, response) {
             {where: {id: request.params.id}}
         );
 
-        if (updatedRows === 0) {
+        if (!updatedRows) {
             return response.status(404).json({message: "Product not found!"});
         }
 
-        response.status(200).json({message: "Product updated successfully!"});
+        const updatedProduct = await product.findByPk(request.params.id);
+
+        response.status(200).json({message: "Product updated successfully!", 
+            product: updatedProduct
+        });
     } catch(error) {
         console.error("Error in updateProduct controller", error);
         response.status(500).json({message: "Internal server error!"});
