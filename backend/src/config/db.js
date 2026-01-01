@@ -1,4 +1,11 @@
 import {Sequelize} from "sequelize";
+import dotenv from "dotenv"
+
+dotenv.config();
+
+// for debug: to confirm the variables are loaded
+// console.log(process.env)
+// console.log(process.env.DB_DIALECT);b
 
 const sequelize = new Sequelize(
     process.env.MYSQL_DB_NAME,
