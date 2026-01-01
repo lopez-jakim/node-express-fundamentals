@@ -31,7 +31,7 @@ export async function createProduct (request, response) {
         const newProduct = await product.create({title, content, price});
 
         response.status(201).json({message: "Product created successfully!", product: newProduct});
-    } catch(error){
+    } catch(error) {
         console.error("Error in createProduct controller", error);
         response.status(500).json({message: "Internal server error!"});
     }
