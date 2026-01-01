@@ -1,4 +1,3 @@
-import { response } from "express";
 import product from "../models/Product.js"
 
 export async function getAllProduct(request, response) {
