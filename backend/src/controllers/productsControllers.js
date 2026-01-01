@@ -5,7 +5,7 @@ export async function getAllProduct(request, response) {
         const products = await product.findAll()
         response.status(200).json(products);
     } catch(error) {
-        console.error("Error in getAllProducts Controller");
+        console.error("Error in getAllProducts controller", error);
         response.status(500).json({message: "Internal server error!"});
     }
 }   
