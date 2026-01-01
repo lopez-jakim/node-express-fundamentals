@@ -1,4 +1,5 @@
 import {DataTypes} from "sequelize";
+import {sequelize} from "../config/db.js";
 
 // 1- create a schema
 // 2- model based off of that schema
