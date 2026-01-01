@@ -11,7 +11,15 @@ export async function getAllProduct(request, response) {
 }   
 
 export async function createProduct (request, response) {
-    response.status(201).json({message: "You just created a product!"});
+    try {
+        const {title, content, price} = request.body
+        const newProduct = await product.create({title, content, price});
+
+        response.status(201).json({message: "Product created successfully!", product: newProduct});
+    } catch(error){
+        console.error("Error in createProduct controller", error);
+        response.status(500).json({message: "Internal server error!"});
+    }
 }
 
 export async function updateProduct (request, reponse) {
